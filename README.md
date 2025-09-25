@@ -165,3 +165,244 @@ SQL: Language to manage and query data
 RDBMS: Structured tables, relationships, SQL-based
 NoSQL: Flexible, unstructured, fast
 Goal: Turn raw data → meaningful information
+ 
+                                                                                                                **DBMS**
+
+**What is DBMS?**
+DBMS (Database Management System) is software that stores, organizes, manages, and retrieves data efficiently from databases.
+It acts as an interface between users/applications and the database.
+Examples of DBMS:
+Relational: MySQL, PostgreSQL, Oracle, SQL Server
+NoSQL: MongoDB, Couchbase, Cassandra
+
+**Key Functions:**
+Data storage & retrieval – store large amounts of data and fetch it quickly.
+Data security – control who can access or modify data.
+Dataintegrity – ensure data is accurate and consistent.
+Concurrency control – multiple users can access data simultaneously without conflicts.
+Backup & recovery – recover data in case of crashes or errors.
+
+**Use Cases of DBMS:**
+Use Case                                              	Description / Example
+Banking	                                      Store customer accounts, transactions, loans, and ensure secure access.
+E-commerce                                    Manage product catalogs, orders, inventory, and customer data.
+Healthcare	                                  Maintain patient records, prescriptions, lab reports, and appointment schedules.
+Education	                                    Store student data, grades, courses, schedules, and faculty information.
+Telecom                                     	Manage subscriber info, call records, billing, and network usage.
+Social Media	                                Store user profiles, posts, messages, and activity logs
+Data Analytics / BI	                          Power BI, Tableau, and dashboards fetch data from DBMS for analysis.
+Enterprise Resource Planning (ERP)          	Store and manage HR, finance, sales, and supply chain data centrally.
+
+                                                  **   How we process data from the database**
+                   
+───────────── Human / User ───────────────    ─────── Application ────────    ───── Power BI ──────
+1. User types SQL query                   1. Web App sends query/login       1. Power BI fetches data
+   in MySQL Workbench                        request to database                 (e.g., sales report)
+   [Customer ordering food]                 [User request via app]             [BI tool request]
+
+2. MySQL Workbench (Connector)            2. JDBC/ODBC or API Connector      2. Power BI Connector
+   Sends query to DB                         Sends query to DB                  Sends query to DB
+   [Waiter carries order]                    [Connector/driver carries]         [Connector carries]
+
+3. MySQL Database Engine                   3. Database Engine                 3. Database Engine
+   Parses, validates, executes,            Parses, validates, executes       Parses, validates, executes
+   fetches data                             fetches data                      fetches data
+   [Kitchen prepares food]                  [Kitchen prepares food]           [Kitchen prepares food]
+
+4. MySQL Workbench (Result back)          4. Connector/API returns data      4. Connector returns results
+   Receives query result                     back to Web App                   back to Power BI
+   [Waiter brings food back]                [Waiter brings food back]         [Waiter brings food back]
+
+5. User sees output                        5. Web App displays result         5. Power BI visualizes data
+   [Customer eats dish]                      on screen                        [Customer sees visual report]
+
+                                                                                                              **  DBMS and its types**
+**   TYPES OF DBMS**
+   🔹 1. Relational Database (RDBMS – SQL)
+Definition: Stores data in tables (rows + columns) with a fixed schema.
+Example:
+CREATE TABLE Students (ID INT, Name VARCHAR(50), Age INT);
+INSERT INTO Students VALUES (1,'Anwi',22),(2,'Devi',24);
+SELECT * FROM Students;
+Output:
+ID	Name	Age
+1	Anwi	22
+2	Devi	24
+
+Advantages:
+✔ Structured & reliable
+✔ ACID transactions
+✔ Easy querying with SQL
+Use Cases: Banking, ERP, CRM, e-commerce.
+
+🔹 2. Document Database (NoSQL – MongoDB)
+Definition: Stores data as JSON-like documents.
+Example:
+{ "ID":1, "Name":"Anwi", "Age":22 }
+{ "ID":2, "Name":"Devi", "Age":24, "Hobbies":["Reading","Coding"] }
+
+Output (find query):
+[
+ { "ID":1,"Name":"Anwi","Age":22 },
+ { "ID":2,"Name":"Devi","Age":24,"Hobbies":["Reading","Coding"] }
+]
+
+Advantages:
+✔ Flexible schema
+✔ Stores unstructured data
+✔ Scales easily
+Use Cases: CMS, catalogs, web apps, mobile apps.
+
+🔹 3. Key-Value Database (Redis, DynamoDB)
+Definition: Stores data as key → value pairs.
+Example (Redis):
+SET user:1 "Anwi"
+SET user:2 "Devi"
+GET user:1
+
+Output:
+"Anwi"
+
+Advantages:
+✔ Super fast (in-memory)
+✔ Simple lookup
+✔ Best for caching
+Use Cases: Session storage, caching, gaming apps.
+
+🔹 4. Graph Database (Neo4j)
+Definition: Stores data as nodes & relationships.
+Example (Cypher query):
+CREATE (a:Person {name:'Anwi'})-[:FRIENDS_WITH]->(b:Person {name:'Devi'});
+MATCH (p:Person)-[:FRIENDS_WITH]->(f) RETURN p,f;
+Output:
+Anwi ---FRIENDS_WITH---> Devi
+
+Advantages:
+✔ Best for relationship-heavy data
+✔ Fast graph traversal
+✔ Natural for networks
+Use Cases: Social networks, fraud detection, recommendation engines.
+
+🔹 5. Wide-Column Database (Cassandra, HBase)
+Definition: Stores data in column families instead of rows.
+Example:
+CREATE TABLE students (id INT PRIMARY KEY, name TEXT, age INT);
+INSERT INTO students (id, name, age) VALUES (1,'Anwi',22);
+INSERT INTO students (id, name, age) VALUES (2,'Devi',24);
+SELECT * FROM students;
+Output:
+id	name	age
+1	Anwi	22
+2	Devi	24
+
+Advantages:
+✔ Handles huge data volumes
+✔ Scales horizontally
+✔ Flexible schema
+Use Cases: IoT, analytics, big data applications.
+
+🔹 6. In-Memory Database (Redis, Memcached)
+Definition: Stores data in RAM for speed.
+Example:
+SET session:123 "Active"
+GET session:123
+Output:
+"Active"
+
+Advantages:
+✔ Lightning-fast performance
+✔ Low latency
+✔ Good for real-time apps
+Use Cases: Gaming, caching, stock trading apps.
+
+🔹 7. Time-Series Database (InfluxDB, TimescaleDB)
+Definition: Optimized for time-stamped data.
+Example:
+INSERT temperature,location=room1 value=28 1633012800
+INSERT temperature,location=room1 value=29 1633016400
+SELECT * FROM temperature;
+Output:
+time	location	value
+1633012800	room1	28
+1633016400	room1	29
+
+Advantages:
+✔ Optimized for time-based queries
+✔ Fast ingestion
+✔ Perfect for monitoring
+Use Cases: IoT sensors, server monitoring, stock prices.
+
+🔹 8. Object-Oriented Database (ObjectDB)
+Definition: Stores data as objects (like in OOP).
+Example (Java Object):
+class Student {
+ int id;
+ String name;
+ int age;
+}
+
+Stored as:
+Object: Student {id:1, name:"Anwi", age:22}
+
+Advantages:
+✔ Works directly with OOP
+✔ Handles complex data
+✔ No need for conversion
+Use Cases: Multimedia, CAD apps, simulations.
+
+🔹 9. Hierarchical Database (IBM IMS)
+Definition: Stores data in a tree structure (parent-child).
+Example:
+
+University
+ └── Faculty
+      └── Student (Anwi)
+      └── Student (Devi)
+
+
+Advantages:
+✔ Fast retrieval
+✔ Natural tree format
+✔ Good for hierarchical data
+Use Cases: Legacy banking, telecom systems.
+
+🔹 10. Network Database
+Definition: Stores data with multiple parent-child links.
+Example:
+Student (Anwi) → Course (SQL)
+Student (Devi) → Course (SQL, MongoDB)
+Advantages:
+✔ Handles complex relationships
+✔ More flexible than hierarchical DB
+Use Cases: Legacy enterprise apps.
+
+🔹 11. Cloud Database
+Definition: Hosted on cloud (AWS, Azure, GCP).
+Example (AWS RDS MySQL):
+mysql -h mydb.rds.amazonaws.com -u admin -p
+SELECT * FROM Students;
+
+Advantages:
+✔ Managed service
+✔ Scalable
+✔ Pay as you go
+Use Cases: Startups, SaaS, global apps.
+
+🔹 12. Multimodel Database (ArangoDB, OrientDB)
+Definition: Supports multiple data models (document + graph + key-value).
+Example:
+Documents:
+{ "id":1, "name":"Anwi" }
+{ "id":2, "name":"Devi" }
+
+Graph relation:
+Anwi → FRIENDS_WITH → Devi
+
+Advantages:
+✔ Flexible
+✔ Multiple models in one DB
+✔ Saves integration cost
+Use Cases: Apps needing mixed data (social + documents).
+
+   
+
