@@ -217,7 +217,7 @@ RDBMS: Structured tables, relationships, SQL-based
 NoSQL: Flexible, unstructured, fast
 Goal: Turn raw data → meaningful information
  
-                                                                                                                **DBMS**
+                                                                                                    **DBMS**
 
 **What is DBMS?**
 DBMS (Database Management System) is software that stores, organizes, manages, and retrieves data efficiently from databases.
@@ -456,7 +456,7 @@ Advantages:
 Use Cases: Apps needing mixed data (social + documents).
 
 
-                                                                                                                         **  SCHEMA**
+                                                                                                                **  SCHEMA**
 🔹 What is a Schema?
 A schema is the blueprint or structure of how data is organized inside a database.
 👉 Think of it like a map or design plan that tells:
