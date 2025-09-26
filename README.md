@@ -454,7 +454,9 @@ Advantages:
 ✔ Multiple models in one DB
 ✔ Saves integration cost
 Use Cases: Apps needing mixed data (social + documents).
-                                                                                                       **  SCHEMA**
+
+
+                                                                                                                         **  SCHEMA**
 🔹 What is a Schema?
 A schema is the blueprint or structure of how data is organized inside a database.
 👉 Think of it like a map or design plan that tells:
