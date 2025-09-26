@@ -115,6 +115,9 @@ Type	            Structure	                                 Examples	           
 RDBMS	           Tables (rows/columns)	                  MySQL, PostgreSQL, SQL Server, Oracle        	Structured data, banking, ERP, web apps
 NoSQL	           Document / Key-Value / Graph / Column	  MongoDB, Redis, Couchbase, Cassandra	        Flexible/unstructured data, real-time apps, big data
 
+Relational Databases = MySQL, PostgreSQL, Oracle (PL/SQL), SQL Server, MariaDB…
+NoSQL Databases = MongoDB, Redis, Cassandra, Neo4j, Couchbase,dynamodb(aws) etc.
+
 **6. How Data is Stored in a Database**
 Step 1: Create a Database
 CREATE DATABASE SchoolDB;
@@ -403,6 +406,83 @@ Advantages:
 ✔ Multiple models in one DB
 ✔ Saves integration cost
 Use Cases: Apps needing mixed data (social + documents).
+                                                                                                       **  SCHEMA**
+🔹 What is a Schema?
+A schema is the blueprint or structure of how data is organized inside a database.
+👉 Think of it like a map or design plan that tells:
+What tables/collections exist
+What fields/columns each table has
+What type of data each column can store
+Rules like Primary Key, Foreign Key, Unique, Not Null
+How tables are related to each other
+📌 In simple words:
+Schema = design of database
+Data = actual content stored in that design
+🔹 Schema in SQL (Relational Database)
+In SQL databases (MySQL, PostgreSQL, Oracle, SQL Server):
+Schema is strict → You must define tables and columns before inserting data.
+Changes in schema (adding/removing columns) require altering the table.
 
+Example:
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Age INT,
+    Email VARCHAR(100) UNIQUE
+);
+
+✅ Here the Schema defines:
+StudentID → Integer, Primary Key
+Name → String, cannot be empty
+Age → Integer
+Email → String, must be unique
+Now when you insert data:
+
+INSERT INTO Students (StudentID, Name, Age, Email)
+VALUES (1, 'Devi', 22, 'devi@example.com');
+
+
+➡️ This record follows schema rules.
+🔹 Schema in NoSQL (Flexible Schema)
+In NoSQL databases (MongoDB, DynamoDB, Cassandra):
+Schema is flexible / schema-less.
+You don’t have to predefine structure.
+Documents/records in the same collection can have different fields.
+Example in MongoDB:
+{
+  "StudentID": 1,
+  "Name": "Devi",
+  "Age": 22,
+  "Email": "devi@example.com"
+}
+
+Another document in the same collection:
+
+{
+  "StudentID": 2,
+  "Name": "Anwi",
+  "Skills": ["AWS", "DevOps"]
+}
+
+✅ Different structure, but still valid.
+🔹 Diagram (Analogy)
+🏠 Schema = Blueprint of a House
+👨‍👩‍👧 Data = People living inside
+You first design rooms, windows, doors (schema)
+Then you fill it with furniture, people, items (data)
+
+🔹 Advantages of Schema
+SQL (Strict Schema):
+Ensures data consistency
+Enforces rules (e.g., age must be number)
+Prevents invalid data entry
+
+NoSQL (Flexible Schema):
+Easy to adapt to changes
+No migrations needed
+Good for unstructured or fast-changing data
+
+✅ Final Definition:
+A schema is the blueprint/structure of a database that defines how data is stored, organized, and related.
    
 
